@@ -1,0 +1,9 @@
+body {
+    background: #eeeeef;
+  }
+  .md-form.md-outline label.active {
+    background: #eeeeef;
+  }
+  .prefix {
+    color: #757575;
+  }
