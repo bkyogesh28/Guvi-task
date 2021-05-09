@@ -1,44 +1,57 @@
 $(document).ready(function(){
-   $("#submit").click(function(){
-    // var name=$("#name").val();
-    // var email=$("#email").val();
-    // var pass=$("#pass").val();
-    // var dat=name+email+pass;
+    var data = $("f-register").serialize();
     $("#f-register").validate({
 		rules:
 		{
-			name: {
+			username: {
 				required: true,
 				minlength: 3
 			},
-			email: {
+            email: {
 				required: true,
 				email: true
 			},
-            password: {
+			password: {
 				required: true,
 				minlength: 8,
 				maxlength: 15
 			},
-		
+			
+			errorPlacement: function(error, element) {
+				error.appendTo('#err');
+			}
 		},
-		
+		messages:
+		{
+			name: "Name is a precious one",
+			password: {
+				required: "please provide a password",
+				minlength: "Give a Strong Password"
+			},
+			email: "please enter a valid email address",
+			
+		},
+		submitHandler: formHandler
 	});
-    
-    $.ajax({
-        url: "register.php",
-        method: "post",
-        data:$("#f-register").serialize(),
-        success:function(response){
-            if (response == "RegisterSuccess"){
-                $("#display-success").html("<ul>"+"User Saved"+"</ul>");
-                $("#display-success").css("display","block");
-            } else {
-                $("#display-error").html("<ul>"+"Registration Failed"+"</ul>");
-                $("#display-error").css("display","block");
+    function formHandler(){
+       
+        $.ajax({
+            url: "register.php",
+            type: "POST",
+            dataType:"text",
+            data: $('#f-register').serialize(),
+            success: function(response){
+                if(response == "Successfuly Registered"){
+                    $("#display-success").text(response)
+                }
+            },
+            error:function(err){
+                window.alert(err)
             }
-        }
-   });
-//   console.log(name+" ,"+email+" ,"+pass)
-     });
-});
+    
+        })
+    
+  
+    }
+    
+})

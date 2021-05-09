@@ -29,7 +29,7 @@ $(document).ready(function(){
                   </table>
                 </div>
               </div>
-              <button type="button" class="btn btn-primary" id="logout" href="logout.php" style="color: white;">Logout</button>`
+              <a  class="btn btn-primary" id="logout" href="logout.php" onclick="localStorage.clear();" style="color: white;">Logout</a>`
             });
             $("#det").append(da)
         }
