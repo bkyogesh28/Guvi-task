@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var data = $("f-register").serialize();
     $("#f-register").validate({
 		rules:
 		{
@@ -41,14 +40,16 @@ $(document).ready(function(){
             dataType:"text",
             data: $('#f-register').serialize(),
             success: function(response){
-                if(response == "Successfuly Registered"){
-                    $("#display-success").text(response)
-                }
+				$("#display-success").html("<ul>"+"User Saved"+"</ul>");
+				$("#display-success").css("display","block");
+                
             },
             error:function(err){
-                window.alert(err)
+				if(err =="Email is Saved Already"){
+				$("#display-error").html("<ul>"+"Register Failed"+"</ul>");
+				$("#display-error").css("display","block");
             }
-    
+		}
         })
     
   
