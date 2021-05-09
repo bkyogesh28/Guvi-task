@@ -45,11 +45,11 @@ $(document).ready(function(){
                 
             },
             error:function(err){
-				if(err =="Email is Saved Already"){
+				
 				$("#display-error").html("<ul>"+"Register Failed"+"</ul>");
 				$("#display-error").css("display","block");
             }
-		}
+		
         })
     
   
